@@ -6,7 +6,10 @@ html{
 body{
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
+    overflow-y: scroll;
+}
+body::-webkit-scrollbar{
+    display: none;
 }
 nav{
     position: sticky;
@@ -155,14 +158,131 @@ nav{
     text-shadow: 0px 0px 5px aqua, 0px 0px 10px aqua, 0px 0px 25px aqua;
 }
 /* MENU END */
-/* HOME */
-.page{
-    height: calc(100vh * 4);
-    z-index: 1;
+main{
+    width: calc(100% - 100px);
+    height: calc(100vh * 5);
+    display: flex;
+    padding-left: 70px;
 }
+.page{
+    width: 100%;
+}
+/* ASIDE */
+aside{
+    width: 70px;
+    height: 500px;
+    background: #1a201e;
+    position: fixed;
+    left: 0;
+    top: 50%;
+    translate: 0 -50%;
+    border-radius: 0 10px 10px 0;
+    z-index: 3;
+}
+aside>ul{
+    width: 40%;
+    height: 95%;
+    padding-left: 20px;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+li{
+    width: 45px;
+    height: 45px;
+    font-size: 45px;
+    transition: 0.5s;
+}
+li:hover{
+    transform: scale(1.1)
+    translate(0,-10px);
+}
+.icon{
+    position: relative;
+    color: rgb(255, 255, 255,0.5);
+    transition: 0.5s;
+
+}
+.icon.active{
+    color: rgb(255, 255, 255);
+}
+.icon.active::after{
+    content: '';
+    width: 35px;
+    height: 5px;
+    position: absolute;
+    left: 5px;
+    bottom: -5px;
+    background: rgb(255, 255, 255);
+    border-radius: 5px;
+    z-index: 4;
+    animation: status-bar 3s linear infinite;
+}
+@keyframes status-bar {
+    0%{
+        
+    }
+    50%{
+        translate:0 5px ;
+        transform: scale(0.8);
+        background: rgba(255, 255, 255, 0.468);
+    }
+    100%{
+        translate:0 0 ;
+    }
+}
+.icon:hover{
+    color: rgb(255, 255, 255);
+}
+.after{
+    position: fixed;
+    left: -120%;
+    top: 380px;
+    height: 5px;
+    width: 35px;
+    margin-left: 17px;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    transition: 0.5s;
+    animation: after 5s ease-in-out infinite;
+}
+
+@keyframes after {
+    0%{
+        
+    }
+    50%{
+        translate:0 3px ;
+        transform: scale(0.8);
+    }
+    100%{
+        translate:0 0 ;
+    }
+}
+.after.home{
+    top: 265px;
+    left: -2px;
+}
+.after.about{
+    top: 345px;
+    left: -2px;
+}
+.after.project{
+    top: 428px;
+    left: -2px;
+}
+.after.own{
+    top: 510px;
+    left: -2px;
+}
+/* ASIDE END */
+/* HOME */
+
 #home{
     width: 100%;
-    height: calc(100vh - 50px);
+    height: 100vh;
 }
 .homecontainer{
     height: 100%;
@@ -280,29 +400,30 @@ b{
     width: 100%; 
     height: calc(100vh - 50px);
     display: flex;
-    flex-wrap: wrap;
-    text-align: center; 
+    flex-wrap: wrap; 
+    justify-content: start;
     overflow: hidden;
+    color: #1a201e;
+    position: relative;
+
 }
 .judulabout{
     position: absolute;
-    width: 100%;
+    width: 85%;
     height: 30px;
-    color: white;
     font-family: Arial, Helvetica, sans-serif;
     text-transform: capitalize;
     margin-top: 10px;
-    z-index: 5;
+    left: 20px;
+    z-index: 2;
+    text-align: center;
 }
 .aboutinfo{
-    width: 100%;
+    width: calc(100% - 70px);
     height: 100%;
-    color: white;
-    background: rgba(7, 6, 6);
     z-index: 1;
 }
 .btno{
-    color: white;
     font-size: 60px;
     display: flex;
     justify-content: center;
@@ -393,14 +514,46 @@ b{
 /* SKILS */
 #skils{
     width: 100%;
-    height: 140vh;
+    height: 180vh;
     display: flex;
     flex-wrap: wrap;
     align-items: start;
     justify-content: center;
     gap: 0;
-}
+    overflow: hidden;
 
+}
+#skils>h1{
+    width: 100%;
+    font-size: 50px;
+    font-family: 'Courier New', Courier, monospace;
+    text-transform: capitalize;
+    color: transparent;
+    background: linear-gradient(to top,#d65d00,#00ff99);
+    background-clip: text;
+    text-shadow: 0px 0px 10px rgb(218, 218, 218);
+    cursor: default;
+    padding-left: 20%;
+}
+#skils>h2{
+    font-size: 30px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-transform: capitalize;
+    color: rgb(31, 31, 31);
+    text-shadow: 0px 0px 10px black;
+    cursor: default;
+    margin: 0%;
+}
+#skils>h2::before , #skils>h2::after{
+    content: "";
+    position: absolute;
+    width: 40px;
+    height: 3px;
+    background: red;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
 .swaper{
     font-size: 1.5rem;
     width: 100%;
@@ -409,17 +562,18 @@ b{
     align-items: center;
     justify-content: center;
     margin: 0;
-    margin-top: 50px;
+    margin-top: 45px;
 }
 
 
 .swaper>.container{
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 200px;
     position: relative;
     transform-style: preserve-3d;
-    transform: perspective(1px);
+    transform: perspective(1000px);
     animation: rotate3d 20s linear infinite;
+    cursor: pointer;
 
     div{
         position: absolute;
@@ -429,18 +583,13 @@ b{
         transform: rotateY(calc(var(--1) * 45deg)) translateZ(400px);
         transition: transform 1s;
 
-        span{
-            width: 150px;
+        img{
+            width: 200px;
             height: 200px;
-            background-color: black;
-            font-size: 10rem;
-            color: aliceblue;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 600px;
-            text-shadow: 10px 10px 20px crimson;
-            border-radius: 24px;
+            border-radius: 35px;
             box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
         }
     }
@@ -461,22 +610,21 @@ b{
 
 .skilholder{
     width: 100%;
-    height: 70%;
+    height: 100vh;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
     gap: 10px;
     align-items: center;
     padding-top: 50px;
-    padding-left: 20px;
-    padding-right: 20px;
     overflow: hidden;
+    padding-right: 10%;
 }
 .skilholder>input{
     display:none;
 }
 .skil{
-    width: 100%;
+    width: 90%;
     height: 60px;
     display: flex;
     flex-wrap: wrap;
@@ -484,21 +632,32 @@ b{
     justify-content: start;
     border-radius: 5px;
     position: relative;
-    transition: 0.5s;
+    transition: 0.3s;
     overflow: hidden;
+}
+.skil:nth-child(2):hover{
+    filter: grayscale(0%);
+}
+.skil:nth-child(4):hover{
+    filter: grayscale(0%);
+}
+.skil:nth-child(6):hover{
+    filter: grayscale(0%);
 }
 .skil:nth-child(2){
     background: url(./img/download\ \(9\).jfif);
     background-position: center;
     background-size: contain;
+    filter: grayscale(100%);
 }
 .skil:nth-child(4){
-    color: rgb(2, 255, 129);
+    color: rgb(219, 219, 219);
     text-shadow: 0px 0px 5px black;
     background: url(./img/01Graphic-Design.jpg);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+    filter: grayscale(100%);
 }
 .skil:nth-child(6){
     color: white;
@@ -507,13 +666,7 @@ b{
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-}
-.skil:nth-child(8){
-    color: black;
-    background: url(./img/images\ \(8\).jfif);
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
+    filter: grayscale(100%);
 }
 .skil::after{
     content: '';
@@ -536,15 +689,15 @@ b{
 }
 #skil1:checked ~ .skil:nth-child(2){
     height: 200px;
+    filter: grayscale(0%);
 }
 #skil2:checked ~ .skil:nth-child(4){
     height: 200px;
+    filter: grayscale(0%);
 }
 #skil3:checked ~ .skil:nth-child(6){
     height: 200px;
-}
-#skil4:checked ~ .skil:nth-child(8){
-    height: 200px;
+    filter: grayscale(0%);
 }
 .skilname{
     margin: 0;
@@ -616,10 +769,9 @@ b{
 #project{
     width: 100%;
     height: 100vh;
-    color: aliceblue;
-    background: black;
+    color: black;
     font-family: arial;
-    padding: 20px;
+    padding-left: 15px;
 }
 .projectcontainer{
     width: 100%;
@@ -633,31 +785,144 @@ b{
     align-items: center;
     justify-content: center;
     position: relative;
-    border: 1px red solid;
 }
 .fotoproject{
     width: 85%;
     max-width: 400px;
-    height: 400px;
+    height: 300px;
     position: absolute;
     background: white;
+    border-radius: 25px;
+    transition: 0.5s;
+    z-index: 1;
+    filter: grayscale(100%);
+    cursor: pointer;
+    transform: rotate(-5deg);
+}
+.fotoproject:hover{
+    z-index: 2;
+    filter: grayscale(0%);
+    transform: rotate(0deg);
 }
 .f1{
     left: 20px;
-    top: 100px;
+    top: 80px;
     background: blue;
 }
 .f2{
-    left: 40px;
+    right: 2px;
     top: 160px;
     background: red;
+    transform: rotate(-15deg);
 }
 .f3{
-    left: 10px;
-    top: 200px;
+    left: 0;
+    top: 250px;
     background: green;
+    transform: rotate(-7deg);
 }
 .infoproject{
     width: calc(50% - 20px);
-    border: 1px rgb(25, 0, 255) solid;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    padding-left: 20px;
+    padding-top: 100px;
+}
+.infoproject>h1{
+    width: 100%;
+    cursor: default;
+    padding-left: 30px;
+    font-family: sans-serif;
+    font-weight: 800;
+    text-transform: capitalize;
+    text-shadow: 0px 0px 5px rgb(157, 255, 0);
+}
+.infoproject>h2{
+    cursor: default;
+    padding-left: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.infoproject>a{
+    width: 150px;
+    margin-top: 10px;
+    margin-left: 20px;
+    font-size: 20px;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 10px 15px;
+    background-color: rgb(9, 12, 12);
+    color: #ecefee;
+    border-radius: 5px 5px 5px 5px;
+    text-align: center;
+    transition: 0.5s;
+    border: 1px solid rgb(9, 12, 12);
+    border-bottom: 5px solid rgb(9, 12, 12);
+}
+.infoproject>a:hover{
+    transform: translateY(-5px);
+}
+.infoproject>a:active{
+    transform: translateY(5px);
+}
+/* PROJECT END */
+/* CONTACT */
+
+#contact{
+    width: 90%;
+    height: 450px;
+}
+.containercontact{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    padding: 20px;
+}
+.containercontact>img{
+    width: 300px;
+    height: 400px;
+    background: rgb(255, 255, 255);
+    border-radius: 10px;
+    position: relative;
+    margin-top: 10px;
+    margin-left: 10px;
+    filter: grayscale(100%);
+    transition: 1.5s;
+    background-size: contain;
+}
+.containercontact>img:hover{
+    filter: grayscale(0%);
+}
+.infocontact{
+    width: calc(100% - 360px);
+    height: 400px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    padding: 0;
+    padding-left: 20px;
+    padding-right: 10px;
+}
+.infocontact>h1{
+    cursor: default;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 800;
+    text-transform: capitalize;
+    text-shadow: 0px 0px 3px rgb(255, 0, 0);
+}
+.infocontact>h2{
+    cursor: default;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.contacticon{
+    color: black;
+    font-size: 25px;
+    margin-left: 5px;
+    transition: 1s;
+    cursor: pointer;
+}
+.contacticon:hover{
+    color: transparent;
+    background: conic-gradient(#ff4545,#00ff99,#006aff,#ff0095);
+    background-clip: text;
 }
