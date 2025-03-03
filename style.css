@@ -759,11 +759,6 @@ b{
 .btnskil.show{
     transform: rotate(315deg);
 }
-@media(max-width:576px){
-    #hometeks{
-        color: aqua;
-    }
-}
 /* SKILL END */
 /* PROJECT */
 #project{
@@ -925,4 +920,9 @@ b{
     color: transparent;
     background: conic-gradient(#ff4545,#00ff99,#006aff,#ff0095);
     background-clip: text;
+}
+@media(max-width:576px){
+    aside{
+      display: none;
+    }
 }
