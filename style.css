@@ -925,4 +925,8 @@ b{
     aside{
       display: none;
     }
+    
+    main{
+      padding: 0;
+    }
 }
