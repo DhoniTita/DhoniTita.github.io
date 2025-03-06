@@ -282,7 +282,7 @@ li:hover{
 
 #home{
     width: 100%;
-    height: 100vh;
+    height: 120vh;
 }
 .homecontainer{
     height: 100%;
@@ -883,11 +883,13 @@ b{
     font-weight: 800;
     text-transform: capitalize;
     text-shadow: 0px 0px 5px rgb(157, 255, 0);
+    z-index: 3;
 }
 .infoproject>h2{
     cursor: default;
     padding-left: 10px;
     font-family: Arial, Helvetica, sans-serif;
+    z-index: 3;
 }
 .infoproject>a{
     width: 150px;
@@ -904,6 +906,7 @@ b{
     transition: 0.5s;
     border: 1px solid rgb(9, 12, 12);
     border-bottom: 5px solid rgb(9, 12, 12);
+    z-index: 3;
 }
 .infoproject>a:hover{
     transform: translateY(-5px);
